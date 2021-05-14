@@ -7,7 +7,6 @@ setwd("~/git/sdl-mock-data")
 
 dat = fread("organisation_links.csv")
 names(dat) = make.names(names(dat))
-dat = subset(dat, Organisation.2 %in% unique(Organisation.1))
 
 pubs = fread("iati_publishers_list.csv")
 names(pubs) = make.names(names(pubs))
