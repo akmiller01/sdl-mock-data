@@ -22,6 +22,7 @@ dat = dat %>%
   rename(Organisation.2 = Publisher)
 
 dat = dat[complete.cases(dat),]
+dat = subset(dat, Organisation.1 != Organisation.2)
 fwrite(dat, "organisation_links_clean.csv")
 dat = subset(dat, Relationship=="provides transaction funding to")
 
