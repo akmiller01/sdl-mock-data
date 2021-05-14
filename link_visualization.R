@@ -22,7 +22,7 @@ dat = dat %>%
   rename(Organisation.2 = Publisher)
 
 dat = dat[complete.cases(dat),]
-fwrite("organisation_links_clean.csv")
+fwrite(dat, "organisation_links_clean.csv")
 
 sources = dat %>%
   distinct(Organisation.1) %>%
