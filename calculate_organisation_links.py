@@ -79,8 +79,8 @@ if __name__ == "__main__":
                     if reporting_org != relational_org:
                         output_tup1 = (reporting_org, relationship, relational_org)
                         output.add(output_tup1)
-                        output_tup2 = (relational_org, inverse_relation, reporting_org)
-                        output.add(output_tup2)
+                        # output_tup2 = (relational_org, inverse_relation, reporting_org)
+                        # output.add(output_tup2)
         destroy_tree(tree)
 
     with open("organisation_links.csv", "w") as outfile:
