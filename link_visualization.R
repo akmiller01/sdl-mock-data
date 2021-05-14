@@ -23,6 +23,7 @@ dat = dat %>%
 
 dat = dat[complete.cases(dat),]
 fwrite(dat, "organisation_links_clean.csv")
+dat = subset(dat, Relationship=="provides transaction funding to")
 
 sources = dat %>%
   distinct(Organisation.1) %>%
@@ -51,6 +52,6 @@ edges <- select(edges, from, to, weight)
 nodes_d3 <- mutate(nodes, id = id - 1)
 edges_d3 <- mutate(edges, from = from - 1, to = to - 1)
 forceNetwork(Links = edges_d3, Nodes = nodes_d3, Source = "from", Target = "to", 
-             NodeID = "label", Group = "id", Value = "weight", 
+             NodeID = "label", Group = "id", Value = "weight", arrows=T,
              opacity = 1, fontSize = 16, zoom = TRUE) %>%
   saveNetwork(file="force_directed_network.html")
