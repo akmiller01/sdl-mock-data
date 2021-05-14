@@ -83,7 +83,7 @@ if __name__ == "__main__":
                         output.add(output_tup2)
         destroy_tree(tree)
 
-    with open("organisation_links.csv", "wb") as outfile:
+    with open("organisation_links.csv", "w") as outfile:
         csv_out = csv.writer(outfile)
         csv_out.writerow(['Organisation 1', 'Relationship', 'Organisation 2'])
         csv_out.writerows(output)
