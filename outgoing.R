@@ -9,7 +9,7 @@ dat = fread("sdl_outgoing.csv")
 
 ids = unique(dat$`IATI Identifier`)[c(1:500)]
 
-base_query = 'https://iatidatastore.iatistandard.org/search/activity?q=(iati_identifier:"xxxyyyzzz")&fl=location_*&wt=csv&rows=50'
+base_query = 'https://iatidatastore.iatistandard.org/search/activity?q=(iati_identifier:"xxxyyyzzz")&fl=description_narrative_text,location_name_narrative_text,policy_marker_code&wt=csv&rows=50'
 
 for(id in ids){
   location_names = paste(fread(gsub("xxxyyyzzz", id, base_query))$location_name_narrative_text, collapse="|")
@@ -45,7 +45,7 @@ for(i in 1:nrow(dat)){
 }
 
 sectors = fread("Sector.csv") %>% select(code, name) %>% rename("Sector Code" = code, "Sector Name" = name)
-dat = merge(dat, sectors, by="Sector Code", all.x=T, sort=F)
+dat = merge(dat, sectors, by="Sector Code", sort=F)
 dat = subset(dat, select=c(2:14, 1, 23, 15:22))
 
 fwrite(dat, "sdl_outgoing_formatted.csv")
