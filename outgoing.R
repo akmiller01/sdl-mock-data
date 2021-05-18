@@ -7,6 +7,17 @@ setwd("~/git/sdl-mock-data")
 
 dat = fread("sdl_outgoing.csv")
 
+ids = unique(dat$`IATI Identifier`)[c(1:500)]
+
+base_query = 'https://iatidatastore.iatistandard.org/search/activity?q=(iati_identifier:"xxxyyyzzz")&fl=location_*&wt=csv&rows=50'
+
+for(id in ids){
+  location_names = paste(fread(gsub("xxxyyyzzz", id, base_query))$location_name_narrative_text, collapse="|")
+  if(location_names != "NA"){
+    dat$`Location Name`[which(dat$`IATI Identifier`==id)] = location_names
+  }
+}
+
 sig_map = c(
   "0" = "Not targeted",
   "1" = "Significant objective",
