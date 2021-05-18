@@ -48,6 +48,6 @@ for(i in 1:nrow(dat)){
 
 sectors = fread("Sector.csv") %>% select(code, name) %>% rename("Sector Code" = code, "Sector Name" = name)
 dat = merge(dat, sectors, by="Sector Code", all.x=T, sort=F)
-dat = subset(dat, select=c(2:14, 1, 23, 15:22))
+dat = subset(dat, select=c(2:14, 1, 25, 23, 15:22, 24))
 
 fwrite(dat, "sdl_outgoing_formatted.csv")
